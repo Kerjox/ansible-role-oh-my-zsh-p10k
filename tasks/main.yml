@@ -6,6 +6,9 @@
     name:
       - git
       - zsh
+      - thefuck
+      - bat
+      - fzf
     state: present
 
 - name: clone oh-my-zsh for users
@@ -77,3 +80,51 @@
     shell: /bin/zsh
   with_items: '{{ users }}'
   when: users is defined 
+
+- name: installing zsh-z plugin
+  become: yes
+  become_user: '{{ item.username }}'
+  git:
+    repo: 'https://github.com/agkozak/zsh-z'
+    version: master
+    dest: '~/.oh-my-zsh/custom/plugins/zsh-z'
+  with_items: '{{ users }}'
+  when: users is defined
+
+- name: installing zsh-completions 1/2
+  become: yes
+  become_user: '{{ item.username }}'
+  git:
+    repo: 'https://github.com/zsh-users/zsh-completions'
+    version: master
+    dest: '~/.oh-my-zsh/custom/plugins/zsh-completions'
+  with_items: '{{ users }}'
+  when: users is defined
+
+- name: whriting .zshrc config file for zsh-completions 2/2
+  become: yes
+  become_user: '{{ item.username }}'
+  lineinfile:
+      path: ~/.zshrc
+      line: 'autoload -U compinit && compinit'
+      state: present
+  with_items: '{{ users }}'
+  when: users is defined
+
+- name: installing zsh-syntax-highlighting
+  become_user: '{{ item.username }}'
+  git:
+    repo: 'https://github.com/zsh-users/zsh-syntax-highlighting.git'
+    version: master
+    dest: '~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting'
+  with_items: '{{ users }}'
+  when: users is defined
+
+- name: installing zsh-autosuggestions
+  become_user: '{{ item.username }}'
+  git:
+    repo: 'https://github.com/zsh-users/zsh-autosuggestions'
+    version: master
+    dest: '~/.oh-my-zsh/custom/plugins/zsh-autosuggestions'
+  with_items: '{{ users }}'
+  when: users is defined
