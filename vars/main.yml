@@ -21,7 +21,6 @@ oh_my_zsh_plugins:
   - copydir
   - copyfile
   - dirhistory
-  - zsh_reload
   - jsontools
   - osx
 
