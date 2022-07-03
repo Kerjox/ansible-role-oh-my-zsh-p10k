@@ -18,15 +18,13 @@ oh_my_zsh_plugins:
   - zsh-syntax-highlighting
   - zsh-autosuggestions
   - sudo
-  - copydir
   - copyfile
   - dirhistory
   - jsontools
-  - osx
 
 oh_my_zsh_aliases:
   - alias zshconfig="nano ~/.zshrc"
-  - alias update='sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get dist-upgrade && sudo apt-get autoremove'
+  - alias update='sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get dist-upgrade && sudo apt-get autoremove -y'
   - alias install='sudo apt install'
   - alias sdn='shutdown now'
   - alias bat='batcat'
