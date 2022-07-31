@@ -4,27 +4,37 @@ oh_my_zsh_theme: powerlevel10k
 
 # Default plugins
 oh_my_zsh_plugins:
-  - colored-man-pages
-  - git
-  - docker
-  - docker-compose
-  - history
-  - cp
-  - fzf
-  - thefuck
-  - zsh-completions
-  - gitignore
-  - zsh-z
-  - zsh-syntax-highlighting
-  - zsh-autosuggestions
-  - sudo
-  - copyfile
-  - dirhistory
-  - jsontools
+  
+  - colored-man-pages 
+  - git 
+  - docker 
+  - docker-compose 
+  - history 
+  - cp 
+  - fzf 
+  - thefuck 
+  - zsh-completions 
+  - gitignore 
+  - zsh-z 
+  - zsh-syntax-highlighting 
+  - zsh-autosuggestions 
+  - sudo 
+  - copypath 
+  - copyfile 
+  - dirhistory 
+  - jsontools 
+  - macos 
+  - npm 
+  - node
 
 oh_my_zsh_aliases:
+
+  - alias g='git'
+  - alias b='batcat'
+  - alias c='xclip -selection clipboard'
+  - alias p='xclip -o'
   - alias zshconfig="nano ~/.zshrc"
-  - alias update='sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get dist-upgrade && sudo apt-get autoremove -y'
-  - alias install='sudo apt install'
+  - alias update='sudo nala upgrade -y'
+  - alias install='sudo nala install'
   - alias sdn='shutdown now'
-  - alias bat='batcat'
+  - alias rm='trash'
