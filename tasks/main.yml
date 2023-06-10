@@ -13,7 +13,7 @@
 
 - name: clone oh-my-zsh for users
   become: yes
-  become_user: '{{ item.username }}'
+  become_user: '{{ item }}'
   git:
     repo: 'https://github.com/robbyrussell/oh-my-zsh.git'
     version: master
@@ -23,7 +23,7 @@
 
 - name: clone powerlevel10k for users
   become: yes
-  become_user: '{{ item.username }}'
+  become_user: '{{ item }}'
   git:
     repo: 'https://github.com/romkatv/powerlevel10k.git'
     version: master
@@ -33,7 +33,7 @@
 
 - name: clone zsh-autosuggestions for users
   become: yes
-  become_user: '{{ item.username }}'
+  become_user: '{{ item }}'
   git:
     repo: 'https://github.com/zsh-users/zsh-autosuggestions.git'
     version: master
@@ -43,7 +43,7 @@
 
 - name: clone zsh-syntax-highlighting for users
   become: yes
-  become_user: '{{ item.username }}'
+  become_user: '{{ item }}'
   git:
     repo: 'https://github.com/zsh-users/zsh-syntax-highlighting.git'
     version: master
@@ -53,7 +53,7 @@
 
 - name: write .zshrc for users
   become: yes
-  become_user: '{{ item.username }}'
+  become_user: '{{ item }}'
   template:
     src: .zshrc.j2
     dest: '~/.zshrc'
@@ -64,7 +64,7 @@
 
 - name: write .p10k.zsh for users
   become: yes
-  become_user: '{{ item.username }}'
+  become_user: '{{ item }}'
   copy:
     src: .p10k.zsh
     dest: ~/.p10k.zsh
@@ -76,14 +76,14 @@
 - name: set default shell for users
   become: yes
   user:
-    name: '{{ item.username }}'
+    name: '{{ item }}'
     shell: /bin/zsh
   with_items: '{{ users }}'
   when: users is defined 
 
 - name: installing zsh-z plugin
   become: yes
-  become_user: '{{ item.username }}'
+  become_user: '{{ item }}'
   git:
     repo: 'https://github.com/agkozak/zsh-z'
     version: master
@@ -93,7 +93,7 @@
 
 - name: installing zsh-completions 1/2
   become: yes
-  become_user: '{{ item.username }}'
+  become_user: '{{ item }}'
   git:
     repo: 'https://github.com/zsh-users/zsh-completions'
     version: master
@@ -103,7 +103,7 @@
 
 - name: whriting .zshrc config file for zsh-completions 2/2
   become: yes
-  become_user: '{{ item.username }}'
+  become_user: '{{ item }}'
   lineinfile:
       path: ~/.zshrc
       line: 'autoload -U compinit && compinit'
@@ -112,7 +112,7 @@
   when: users is defined
 
 - name: installing zsh-syntax-highlighting
-  become_user: '{{ item.username }}'
+  become_user: '{{ item }}'
   git:
     repo: 'https://github.com/zsh-users/zsh-syntax-highlighting.git'
     version: master
@@ -121,7 +121,7 @@
   when: users is defined
 
 - name: installing zsh-autosuggestions
-  become_user: '{{ item.username }}'
+  become_user: '{{ item }}'
   git:
     repo: 'https://github.com/zsh-users/zsh-autosuggestions'
     version: master
